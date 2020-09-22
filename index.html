@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Tab</title>
+  <style>
+    body {
+      background: #222 url(bkg.jpg);
+      background-size: cover;
+      font-family: "Helvetica Neue Condensed", Helvetica, sans-serif;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      width: 100vw;
+    }
+
+    .wrapper {
+      box-sizing: border-box;
+      bottom: 0;
+      color: #444;
+      font-size: 13px;
+      margin: 0;
+      padding: 0;
+      padding-bottom: 10px;
+      position: absolute;
+      width: 100%;
+    }
+
+    .wrapper div.limit {
+      box-sizing: border-box;
+      display: inline-block;
+      text-transform: uppercase;
+      width: 49.8%;
+      margin: 0;
+      padding-bottom: 3px;
+      position: relative;
+    }
+
+    .wrapper div.day15 {
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .wrapper div.day30 {
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .wrapper #dtgBar,
+    .wrapper #dteBar {
+      height: 0px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      opacity: 0.4;
+    }
+
+    .wrapper div.day15 #dtgBar {
+      border-bottom: 2px dotted #d692eb;
+    }
+
+    .wrapper div.day30 #dteBar {
+      border-bottom: 2px dotted #ad98f8;
+    }
+
+    .wrapper div strong {
+      color: #555;
+      text-transform: none;
+      padding-left: 5px;
+    }
+
+    div.time {
+      color: #fff;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 3em;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="time" id="time">--:--</div>
+  <div class="wrapper">
+    <div class="limit day15">
+      <strong id="dtg">--</strong>2g0
+      <div id="dtgBar"></div>
+    </div>
+    <div class="limit day30">
+      <strong id="dtesc">--</strong>2Es
+      <div id="dteBar"></div>
+    </div>
+  </div>
+<script>
+  const date_diff_indays = function(date1) {
+    const dt2 = new Date(date1);
+    const dt1 = new Date();
+    return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24));
+  }
+
+  const time_hour = function() {
+    const dt = new Date();
+    const h = dt.getHours();
+    const m = dt.getMinutes();
+    return `${h}:${m}`;
+  }
+
+  const daysToGo = date_diff_indays('09/30/2020');
+  const daysToEsc =  date_diff_indays('10/16/2020');
+
+  document.getElementById('dtg').innerText = daysToGo > 0 ? `${daysToGo}D` : 'NOW';
+  document.getElementById('dtesc').innerText = daysToEsc > 0 ? `${daysToEsc}D` : 'NOW';
+
+  document.getElementById('dtgBar').style.width = daysToGo > 0 ? `${(daysToGo * 100) / 15}%` : 0;
+  document.getElementById('dteBar').style.width = daysToEsc > 0 ? `${(daysToEsc * 100) / 30}%` : 0;
+
+  document.getElementById('time').innerText = time_hour();
+</script>
+</body>
+</html>
