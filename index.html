@@ -101,8 +101,12 @@
 
   const time_hour = function() {
     const dt = new Date();
-    const h = dt.getHours();
-    const m = dt.getMinutes();
+    let h = dt.getHours().toString();
+    let m = dt.getMinutes().toString();
+
+    if (h.length<=1) {h = `0${h}`}
+    if (m.length<=1) {m = `0${m}`}
+
     return `${h}:${m}`;
   }
 
