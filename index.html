@@ -103,11 +103,13 @@
     const dt = new Date();
     let h = dt.getHours().toString();
     let m = dt.getMinutes().toString();
+    let s = dt.getSeconds().toString();
 
     if (h.length<=1) {h = `0${h}`}
     if (m.length<=1) {m = `0${m}`}
+    if (s.length<=1) {s = `0${s}`}
 
-    return `${h}:${m}`;
+    return `${h}:${m}:${s}`;
   }
 
   const daysToGo = date_diff_indays('09/30/2020');
@@ -119,7 +121,7 @@
   document.getElementById('dtgBar').style.width = daysToGo > 0 ? `${(daysToGo * 100) / 15}%` : 0;
   document.getElementById('dteBar').style.width = daysToEsc > 0 ? `${(daysToEsc * 100) / 30}%` : 0;
 
-  document.getElementById('time').innerText = time_hour();
+  setInterval(function () {document.getElementById('time').innerText = time_hour()}, 1000);
 </script>
 </body>
 </html>
