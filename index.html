@@ -92,36 +92,36 @@
       <div id="dteBar"></div>
     </div>
   </div>
-<script>
-  const date_diff_indays = function(date1) {
-    const dt2 = new Date(date1);
-    const dt1 = new Date();
-    return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24));
-  }
+  <script>
+    const date_diff_indays = function(date1) {
+      const dt2 = new Date(date1);
+      const dt1 = new Date();
+      return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24));
+    }
 
-  const time_hour = function() {
-    const dt = new Date();
-    let h = dt.getHours().toString();
-    let m = dt.getMinutes().toString();
-    let s = dt.getSeconds().toString();
+    const time_hour = function() {
+      const dt = new Date();
+      let h = dt.getHours().toString();
+      let m = dt.getMinutes().toString();
+      let s = dt.getSeconds().toString();
 
-    if (h.length<=1) {h = `0${h}`}
-    if (m.length<=1) {m = `0${m}`}
-    if (s.length<=1) {s = `0${s}`}
+      if (h.length<=1) {h = `0${h}`}
+      if (m.length<=1) {m = `0${m}`}
+      if (s.length<=1) {s = `0${s}`}
 
-    return `${h}:${m}:${s}`;
-  }
+      return `${h}:${m}:${s}`;
+    }
 
-  const daysToGo = date_diff_indays('09/30/2020');
-  const daysToEsc =  date_diff_indays('10/16/2020');
+    const daysToGo = date_diff_indays('09/30/2020');
+    const daysToEsc =  date_diff_indays('10/16/2020');
 
-  document.getElementById('dtg').innerText = daysToGo > 0 ? `${daysToGo}D` : 'NOW';
-  document.getElementById('dtesc').innerText = daysToEsc > 0 ? `${daysToEsc}D` : 'NOW';
+    document.getElementById('dtg').innerText = daysToGo > 0 ? `${daysToGo}D` : 'NOW';
+    document.getElementById('dtesc').innerText = daysToEsc > 0 ? `${daysToEsc}D` : 'NOW';
 
-  document.getElementById('dtgBar').style.width = daysToGo > 0 ? `${(daysToGo * 100) / 15}%` : 0;
-  document.getElementById('dteBar').style.width = daysToEsc > 0 ? `${(daysToEsc * 100) / 30}%` : 0;
+    document.getElementById('dtgBar').style.width = daysToGo > 0 ? `${(daysToGo * 100) / 15}%` : 0;
+    document.getElementById('dteBar').style.width = daysToEsc > 0 ? `${(daysToEsc * 100) / 30}%` : 0;
 
-  setInterval(function () {document.getElementById('time').innerText = time_hour()}, 1000);
-</script>
+    setInterval(function () {document.getElementById('time').innerText = time_hour()}, 1000);
+  </script>
 </body>
 </html>
